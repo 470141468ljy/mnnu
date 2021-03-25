@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0196)http://dxg.mnnu.edu.cn/SPCP/Web/PersonActivity/MonitoringCard?zvUCe2qv0b5wjuIFP7upiC3CJbbbE6uQpWrzFkpHKFYf6BSpYSqn3JtB5NfrYUMVerZWcWE3Zu55hezDdiO4MGHZxLuEQyVjfASHVF7zKun-EHgR4Cux56FC6F-E583z.shtml -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="index.css">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="menu.js"></script>
+    <link rel="stylesheet" href="menustyle.css">
+    <link rel="stylesheet" href="MonitoringCard.css">
+    <script src="validation.js"></script>
+    <link rel="stylesheet" href="theme/default/layer.css">
+    <script src="layui-v2.5.7/layui/layui.js"></script>
+    <link rel="stylesheet" href="layui-v2.5.7/layui/css/layui.css">
+
+
+</head>
+<body>
+
+
+<div class="logo">
+    <img src="logo.png">
+</div>
+<div class="container">
+    <div class="pad">
+        <div class="infos">
+            <p class="title">进出场地监控卡</p>
+            <p class="info" id="sname"></p>
+            <p class="info" id="snum"></p>
+            <p class="info" id="ssc"></p>
+
+            <p class="info">场地名称：校门</p>
+            <p class="info">进出类型：进</p>
+            <p class="info" id="time"></p>
+        </div>
+        <div class="codebox">
+            <div class="codeimg">
+                <img src="erwei.png">
+            </div>
+            <div class="lb"></div>
+            <div class="rb"></div>
+        </div>
+    </div>
+</div>
+
+<div id="cd-nav" class="is-fixed">
+    <a href="javascript:void(0)" class="cd-nav-trigger"><span></span></a>
+    <nav id="cd-main-nav">
+        <ul>
+            <li>
+                <a href="http://dxg.mnnu.edu.cn/SPCP/Web/Account/ChooseSys">
+                    <img src="icon1.png"> 返回首页
+                </a>
+            </li>
+            <li>
+                <a href="http://dxg.mnnu.edu.cn/SPCP/Web/Account/Logout">
+                    <img src="icon3.png"> 安全退出
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+
+
+<!--第二版-->
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+    <div class="xl-chrome-ext-bar__logo"></div>
+
+    <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
+    <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+</div>
+
+</body>
+
+<div id="bd">
+    <form id="form">
+        姓名: <input type="text" name="sname"><br>
+        学号: <input type="text" name="snum"><br>
+        学院: <input type="text" name="ssc"><br>
+        <input type="submit" value="提交">
+    </form>
+</div>
+
+<script>
+    layui.use(['layer','jquery'],function () {
+        var layer = layui.layer;
+        var $ = layui.jquery;
+
+        var index = layer.open({
+            type:1,
+            content:$('#bd')
+        });
+
+        $('#form').submit(function (e) {
+
+            e.preventDefault();
+            var sname = $('input[name="sname"]').val();
+            var snum = $('input[name="snum"]').val();
+            var ssc = $('input[name="ssc"]').val();
+
+
+            $('#sname').html('姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：'+sname);
+            $('#snum').html('学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：'+snum);
+            $('#ssc').html('所属学院：'+ssc);
+
+
+            var date = new Date();
+            var year = date.getFullYear();
+            var mon = date.getMonth();
+            var day = date.getDay();
+
+            var h = date.getHours();
+            var m = date.getMinutes();
+
+            var str = year+"."+mon+"."+day+" "+h+":"+m;
+
+
+            $('#time').html('扫描时间：'+str)
+            $('#bd').addClass("layui-hide");
+
+            layer.close(index);
+
+           return false;
+        });
+
+
+
+
+    });
+
+</script>
+</html>
